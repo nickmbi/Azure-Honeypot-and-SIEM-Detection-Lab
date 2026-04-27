@@ -6,29 +6,29 @@ Home SOC in Azure. This project involved using a free Azure subscription to crea
 
 ### Skills Learned
 
-Built a basic cloud-based SOC environment using Microsoft Azure and Microsoft Sentinel.
-Created and configured an Azure Windows virtual machine to act as a honeypot.
-Configured a Network Security Group rule to allow inbound traffic for attack simulation.
-Forwarded Windows Security Event logs into a Log Analytics Workspace.
-Used Microsoft Sentinel as a SIEM to collect, query, and investigate security events.
-Analyzed failed login attempts using Windows Event ID 4625.
-Practiced writing KQL queries to filter and investigate authentication activity.
-Enriched attacker IP address data using a GeoIP watchlist.
-Created an attack map workbook to visualize real-world attack sources.
-Improved understanding of SOC operations, log analysis, threat detection, and cloud security monitoring.
+- Built a basic cloud-based SOC environment using Microsoft Azure and Microsoft Sentinel.
+- Created and configured an Azure Windows virtual machine to act as a honeypot.
+- Configured a Network Security Group rule to allow inbound traffic for attack simulation.
+- Forwarded Windows Security Event logs into a Log Analytics Workspace.
+- Used Microsoft Sentinel as a SIEM to collect, query, and investigate security events.
+- Analyzed failed login attempts using Windows Event ID 4625.
+- Practiced writing KQL queries to filter and investigate authentication activity.
+- Enriched attacker IP address data using a GeoIP watchlist.
+- Created an attack map workbook to visualize real-world attack sources.
+- Improved understanding of SOC operations, log analysis, threat detection, and cloud security monitoring.
 
 ### Tools Used
 
-Microsoft Azure — Used to create the cloud environment and deploy the Windows virtual machine.
-Azure Virtual Machine — Used as the honeypot exposed to the internet.
-Network Security Group — Used to configure inbound traffic rules for the honeypot.
-Windows Event Viewer — Used to inspect local Windows Security logs.
-Log Analytics Workspace — Used as the central log repository for collected security events.
-Microsoft Sentinel — Used as the SIEM for log analysis, threat detection, and visualization.
-Windows Security Events via AMA Connector — Used to forward Windows Security logs into Sentinel.
-KQL — Used to query failed logins and investigate attacker activity.
-Sentinel Watchlist — Used to import GeoIP data for IP address enrichment.
-Sentinel Workbook — Used to create an attack map showing attacker locations.
+- Microsoft Azure — Used to create the cloud environment and deploy the Windows virtual machine.
+- Azure Virtual Machine — Used as the honeypot exposed to the internet.
+- Network Security Group — Used to configure inbound traffic rules for the honeypot.
+- Windows Event Viewer — Used to inspect local Windows Security logs.
+- Log Analytics Workspace — Used as the central log repository for collected security events.
+- Microsoft Sentinel — Used as the SIEM for log analysis, threat detection, and visualization.
+- Windows Security Events via AMA Connector — Used to forward Windows Security logs into Sentinel.
+- KQL — Used to query failed logins and investigate attacker activity.
+- Sentinel Watchlist — Used to import GeoIP data for IP address enrichment.
+- Sentinel Workbook — Used to create an attack map showing attacker locations.
 
 
 ## Steps
