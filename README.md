@@ -105,6 +105,7 @@ WindowsEvents
 
 This helped identify where attack traffic was coming from.
 
+
 15: Microsoft Sentinel Workbook Creation
 
 Created a new Microsoft Sentinel Workbook and removed the default elements. Added a query element and used the provided JSON configuration to build an attack map.
@@ -112,6 +113,9 @@ Created a new Microsoft Sentinel Workbook and removed the default elements. Adde
 16: Attack Map Visualization
 
 Configured the workbook map settings to display failed login attempts by geographic location. The attack map provided a visual representation of real-world attacker activity against the Azure honeypot.
+
+<img width="1211" height="663" alt="Attack Map" src="https://github.com/user-attachments/assets/30cbd2af-a9b5-42ed-9e75-4c3af92d349d" />
+
 
 17: Final Home SOC Architecture
 
