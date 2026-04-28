@@ -31,6 +31,7 @@ Home SOC in Azure. This project involved using a free Azure subscription to crea
 - Sentinel Workbook — Used to create an attack map showing attacker locations.
 
 
+
 ## Steps
 1: Azure Subscription Setup
 
@@ -48,9 +49,15 @@ Configured the Network Security Group for the virtual machine to allow all inbou
 
 Logged into the Windows virtual machine and disabled the Windows Defender Firewall using wf.msc. This allowed more inbound traffic to reach the VM and helped generate security logs for analysis.
 
+<img width="1297" height="762" alt="Firewall" src="https://github.com/user-attachments/assets/ffa59227-a3c3-4770-9e52-31ddf45904d6" />
+
+
 5: Failed Login Simulation
 
 Attempted to log in to the virtual machine multiple times using an invalid username such as employee. These failed login attempts generated Windows Security Event logs that could later be reviewed and forwarded to Sentinel.
+
+<img width="1402" height="785" alt="employ" src="https://github.com/user-attachments/assets/fbe30d55-e6cc-4fa8-8135-db2adb1ebce4" />
+
 
 6: Event Viewer Security Logs
 
@@ -85,11 +92,17 @@ This query displayed failed login activity, including timestamps, usernames, and
 
 Reviewed the failed login logs and identified external IP addresses attempting to authenticate to the virtual machine. These logs showed real-world brute-force activity against the exposed honeypot.
 
+<img width="1209" height="661" alt="Logs" src="https://github.com/user-attachments/assets/01257fb9-4429-4046-8ac0-d822f41f3ce7" />
+
+
 13: GeoIP Watchlist Import
 
 Downloaded and imported the geoip-summarized.csv file into Microsoft Sentinel as a watchlist. The watchlist was named geoip and used the network field as the search key.
 
 This watchlist allowed IP addresses from failed login attempts to be matched with geographic location data.
+
+<img width="1212" height="667" alt="Geo Ip" src="https://github.com/user-attachments/assets/0e15c2c6-0ae5-44fb-ab63-5252ac4658c8" />
+
 
 14: Enriching Logs with Location Data
 
@@ -110,11 +123,12 @@ This helped identify where attack traffic was coming from.
 
 Created a new Microsoft Sentinel Workbook and removed the default elements. Added a query element and used the provided JSON configuration to build an attack map.
 
+<img width="1211" height="663" alt="Attack Map" src="https://github.com/user-attachments/assets/cd475c38-60e8-4717-a291-8ce4071ce4fb" />
+
+
 16: Attack Map Visualization
 
 Configured the workbook map settings to display failed login attempts by geographic location. The attack map provided a visual representation of real-world attacker activity against the Azure honeypot.
-
-<img width="1211" height="663" alt="Attack Map" src="https://github.com/user-attachments/assets/30cbd2af-a9b5-42ed-9e75-4c3af92d349d" />
 
 
 17: Final Home SOC Architecture
