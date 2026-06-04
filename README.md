@@ -1,4 +1,4 @@
-# Azure-Honeypot-and-SIEM-Detection-Lab-
+# Azure-Honeypot-and-SIEM-Detection-Lab
 
 ## Objective
 
