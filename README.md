@@ -4,18 +4,6 @@
 
 Home SOC in Azure. This project involved using a free Azure subscription to create a Windows virtual machine, expose it to the internet as a honeypot, forward security logs to a centralized Log Analytics Workspace, and use Microsoft Sentinel to analyze real-world attack activity. The goal was to gain hands-on experience with cloud security monitoring, SIEM log analysis, failed-login detection, and attack visualization.
 
-### Skills Learned
-
-- Built a basic cloud-based SOC environment using Microsoft Azure and Microsoft Sentinel.
-- Created and configured an Azure Windows virtual machine to act as a honeypot.
-- Configured a Network Security Group rule to allow inbound traffic for attack simulation.
-- Forwarded Windows Security Event logs into a Log Analytics Workspace.
-- Used Microsoft Sentinel as a SIEM to collect, query, and investigate security events.
-- Analyzed failed login attempts using Windows Event ID 4625.
-- Practiced writing KQL queries to filter and investigate authentication activity.
-- Enriched attacker IP address data using a GeoIP watchlist.
-- Created an attack map workbook to visualize real-world attack sources.
-- Improved understanding of SOC operations, log analysis, threat detection, and cloud security monitoring.
 
 ### Tools Used
 
