@@ -39,7 +39,7 @@ Attack Map Workbook
 - Microsoft Sentinel
 - Kusto Query Language
 - Sentinel Workbooks
-
+- GeoIP watchlist
 
 # Project Walkthrough
 
