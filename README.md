@@ -14,9 +14,9 @@ Internet
       │
 Azure Windows VM (Honeypot)
       │
-Azure Monitor Agent (AMA)
+Azure Monitor Agent
       │
-Data Collection Rule (DCR)
+Data Collection Rule
       │
 Log Analytics Workspace
       │
@@ -49,7 +49,7 @@ Created a free Microsoft Azure subscription.
 
 Deployed a Windows virtual machine to act as an internet-facing honeypot.
 
-Configured a Network Security Group (NSG) to allow inbound traffic for testing.
+Configured a Network Security Group to allow inbound traffic for testing.
 
 Disabled Windows Defender Firewall to increase exposure and generate security events.
 
@@ -73,16 +73,16 @@ Created a Log Analytics Workspace.
 
 Enabled Microsoft Sentinel.
 
-Connected the Windows virtual machine using the Azure Monitor Agent (AMA).
+Connected the Windows virtual machine using the Azure Monitor Agent.
 
-Created a Data Collection Rule (DCR) to forward Windows Security Events into Log Analytics.
+Created a Data Collection Rule to forward Windows Security Events into Log Analytics.
 
 <img width="1209" height="661" alt="Logs" src="https://github.com/user-attachments/assets/01257fb9-4429-4046-8ac0-d822f41f3ce7" />
 
 
 ## 4. Investigated Security Events
 
-Used Kusto Query Language (KQL) to identify failed login attempts.
+Used Kusto Query Language to identify failed login attempts.
 
 ```kusto
 SecurityEvent
