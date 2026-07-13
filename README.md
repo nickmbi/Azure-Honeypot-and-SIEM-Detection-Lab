@@ -1,124 +1,149 @@
-# Azure-Honeypot-and-SIEM-Detection-Lab
+# Azure Honeypot & SIEM Detection Lab
 
-## Objective
+## Overview
 
-Home SOC in Azure. This project involved using a free Azure subscription to create a Windows virtual machine, expose it to the internet as a honeypot, forward security logs to a centralized Log Analytics Workspace, and use Microsoft Sentinel to analyze real-world attack activity. The goal was to gain hands-on experience with cloud security monitoring, SIEM log analysis, failed-login detection, and attack visualization.
-
-
-### Tools Used
-
-- Microsoft Azure — Used to create the cloud environment and deploy the Windows virtual machine.
-- Azure Virtual Machine — Used as the honeypot exposed to the internet.
-- Network Security Group — Used to configure inbound traffic rules for the honeypot.
-- Windows Event Viewer — Used to inspect local Windows Security logs.
-- Log Analytics Workspace — Used as the central log repository for collected security events.
-- Microsoft Sentinel — Used as the SIEM for log analysis, threat detection, and visualization.
-- Windows Security Events via AMA Connector — Used to forward Windows Security logs into Sentinel.
-- KQL — Used to query failed logins and investigate attacker activity.
-- Sentinel Watchlist — Used to import GeoIP data for IP address enrichment.
-- Sentinel Workbook — Used to create an attack map showing attacker locations.
+Built a cloud-based Security Operations Center using Microsoft Azure, Microsoft Sentinel, and a Windows virtual machine configured as an internet-facing honeypot. The project focused on deploying cloud infrastructure, collecting Windows Security logs, analyzing failed login attempts, enriching attack data with GeoIP information, and visualizing real-world attack activity through Microsoft Sentinel.
 
 
 
-## Steps
-1: Azure Subscription Setup
+## Lab Architecture
 
-Created a free Microsoft Azure subscription and accessed the Azure Portal. This subscription provided the cloud environment needed to deploy the honeypot virtual machine, Log Analytics Workspace, and Microsoft Sentinel instance.
+```text
+Internet
+      │
+      │
+Azure Windows VM (Honeypot)
+      │
+Azure Monitor Agent (AMA)
+      │
+Data Collection Rule (DCR)
+      │
+Log Analytics Workspace
+      │
+Microsoft Sentinel
+      │
+GeoIP Watchlist
+      │
+Attack Map Workbook
+```
 
-2: Windows Virtual Machine Creation
 
-Created a Windows 10 virtual machine in Azure to act as the honeypot. The VM was intentionally deployed in the cloud so it could receive real-world login attempts from the internet.
 
-3: Network Security Group Inbound Rule
+## Technologies Used
 
-Configured the Network Security Group for the virtual machine to allow all inbound traffic. This made the VM more exposed to the internet, allowing it to collect realistic attack activity from external sources.
+- Microsoft Azure
+- Azure Virtual Machine
+- Network Security Group 
+- Windows Event Viewer
+- Azure Monitor Agent
+- Data Collection Rules
+- Log Analytics Workspace
+- Microsoft Sentinel
+- Kusto Query Language
+- Sentinel Watchlists
+- Sentinel Workbooks
 
-4: Windows Firewall Disabled
 
-Logged into the Windows virtual machine and disabled the Windows Defender Firewall using wf.msc. This allowed more inbound traffic to reach the VM and helped generate security logs for analysis.
+# Project Walkthrough
+
+## 1. Built the Azure Environment
+
+Created a free Microsoft Azure subscription.
+
+Deployed a Windows virtual machine to act as an internet-facing honeypot.
+
+Configured a Network Security Group (NSG) to allow inbound traffic for testing.
+
+Disabled Windows Defender Firewall to increase exposure and generate security events.
 
 <img width="1297" height="762" alt="Firewall" src="https://github.com/user-attachments/assets/ffa59227-a3c3-4770-9e52-31ddf45904d6" />
 
 
-5: Failed Login Simulation
+## 2. Generated Failed Login Activity
 
-Attempted to log in to the virtual machine multiple times using an invalid username such as employee. These failed login attempts generated Windows Security Event logs that could later be reviewed and forwarded to Sentinel.
+Attempted multiple failed logins against the Windows virtual machine.
+
+Verified Windows Security logs were generated in Event Viewer.
+
+Confirmed failed authentication attempts appeared as **Event ID 4625**.
 
 <img width="1402" height="785" alt="employ" src="https://github.com/user-attachments/assets/fbe30d55-e6cc-4fa8-8135-db2adb1ebce4" />
 
 
-6: Event Viewer Security Logs
+## 3. Configured Log Collection
 
-Opened Windows Event Viewer and inspected the Security logs. The failed login attempts appeared as Event ID 4625, which represents failed authentication attempts on a Windows system.
+Created a Log Analytics Workspace.
 
-7: Log Analytics Workspace Creation
+Enabled Microsoft Sentinel.
 
-Created a Log Analytics Workspace to serve as the central log repository. This workspace collected security events from the honeypot virtual machine so the logs could be queried and analyzed in one place.
+Connected the Windows virtual machine using the Azure Monitor Agent (AMA).
 
-8: Microsoft Sentinel Setup
-
-Enabled Microsoft Sentinel and connected it to the Log Analytics Workspace. Sentinel was used as the SIEM platform for monitoring, querying, and visualizing the security data collected from the VM.
-
-9: Windows Security Events via AMA Connector
-
-Configured the Windows Security Events via AMA connector in Microsoft Sentinel. This allowed Windows Security logs from the virtual machine to be forwarded into the Log Analytics Workspace using the Azure Monitor Agent.
-
-10: Data Collection Rule Creation
-
-Created a Data Collection Rule inside Sentinel to define which Windows Security Events should be collected from the VM. This step completed the log forwarding pipeline from the honeypot to the central repository.
-
-11: Querying Failed Login Attempts with KQL
-
-Used KQL in Log Analytics Workspace and Microsoft Sentinel to search for failed login attempts. The query filtered for Windows Security Event ID 4625.
-
-SecurityEvent
-| where EventId == 4625
-
-This query displayed failed login activity, including timestamps, usernames, and source IP addresses.
-
-12: Reviewing Attacker IP Addresses
-
-Reviewed the failed login logs and identified external IP addresses attempting to authenticate to the virtual machine. These logs showed real-world brute-force activity against the exposed honeypot.
+Created a Data Collection Rule (DCR) to forward Windows Security Events into Log Analytics.
 
 <img width="1209" height="661" alt="Logs" src="https://github.com/user-attachments/assets/01257fb9-4429-4046-8ac0-d822f41f3ce7" />
 
 
-13: GeoIP Watchlist Import
+## 4. Investigated Security Events
 
-Downloaded and imported the geoip-summarized.csv file into Microsoft Sentinel as a watchlist. The watchlist was named geoip and used the network field as the search key.
+Used Kusto Query Language (KQL) to identify failed login attempts.
 
-This watchlist allowed IP addresses from failed login attempts to be matched with geographic location data.
+```kusto
+SecurityEvent
+| where EventID == 4625
+```
+
+Reviewed:
+
+- Failed login attempts
+- Usernames
+- Source IP addresses
+- Event timestamps
+
+
+
+## 5. Added GeoIP Enrichment
+
+Imported the GeoIP watchlist into Microsoft Sentinel.
+
+Matched attacker IP addresses with geographic location data.
+
+Enriched failed login events with country and region information.
 
 <img width="1212" height="667" alt="Geo Ip" src="https://github.com/user-attachments/assets/0e15c2c6-0ae5-44fb-ab63-5252ac4658c8" />
 
 
-14: Enriching Logs with Location Data
+## 6. Built an Attack Map
 
-Used KQL to match attacker IP addresses with the GeoIP watchlist. This enriched the failed login logs with geographic information such as country and region.
+Created a Microsoft Sentinel Workbook.
 
-let GeoIPDB_FULL = _GetWatchlist("geoip");
-let WindowsEvents = SecurityEvent
-    | where IpAddress == "<attacker IP address>"
-    | where EventID == 4625
-    | order by TimeGenerated desc
-    | evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network);
-WindowsEvents
+Configured a map visualization to display failed login attempts by geographic location.
 
-This helped identify where attack traffic was coming from.
-
-
-15: Microsoft Sentinel Workbook Creation
-
-Created a new Microsoft Sentinel Workbook and removed the default elements. Added a query element and used the provided JSON configuration to build an attack map.
+Observed real-world attack traffic targeting the Azure honeypot.
 
 <img width="1211" height="663" alt="Attack Map" src="https://github.com/user-attachments/assets/cd475c38-60e8-4717-a291-8ce4071ce4fb" />
 
 
-16: Attack Map Visualization
+# Skills Demonstrated
 
-Configured the workbook map settings to display failed login attempts by geographic location. The attack map provided a visual representation of real-world attacker activity against the Azure honeypot.
+- Cloud Security
+- Microsoft Azure
+- Microsoft Sentinel
+- SIEM Deployment
+- Windows Security Event Analysis
+- Azure Monitor Agent (AMA)
+- Log Analytics Workspace
+- Data Collection Rules (DCR)
+- Kusto Query Language (KQL)
+- Network Security Groups (NSG)
+- Threat Monitoring
+- GeoIP Log Enrichment
+- Security Event Visualization
 
 
-17: Final Home SOC Architecture
+# Next Steps
 
-Completed the full Home SOC setup. The final architecture included an exposed Azure VM honeypot, Windows Security Event logs, Azure Monitor Agent, Data Collection Rule, Log Analytics Workspace, Microsoft Sentinel, GeoIP enrichment, and an attack map workbook.
+- Create custom Microsoft Sentinel analytics rules.
+- Configure automated incident creation.
+- Enable automated response using Microsoft Sentinel playbooks.
+- Add additional Azure virtual machines for multi-endpoint monitoring.
+- Simulate attacker activity using Kali Linux and investigate alerts in Sentinel.
