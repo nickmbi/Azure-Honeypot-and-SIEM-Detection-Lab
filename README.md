@@ -29,18 +29,15 @@ Attack Map Workbook
 
 
 
-## Technologies Used
+## Tools Used
 
 - Microsoft Azure
 - Azure Virtual Machine
 - Network Security Group 
 - Windows Event Viewer
-- Azure Monitor Agent
-- Data Collection Rules
 - Log Analytics Workspace
 - Microsoft Sentinel
 - Kusto Query Language
-- Sentinel Watchlists
 - Sentinel Workbooks
 
 
@@ -123,27 +120,16 @@ Observed real-world attack traffic targeting the Azure honeypot.
 <img width="1211" height="663" alt="Attack Map" src="https://github.com/user-attachments/assets/cd475c38-60e8-4717-a291-8ce4071ce4fb" />
 
 
-# Skills Demonstrated
+# Skills Learned
 
 - Cloud Security
 - Microsoft Azure
 - Microsoft Sentinel
-- SIEM Deployment
 - Windows Security Event Analysis
-- Azure Monitor Agent (AMA)
 - Log Analytics Workspace
-- Data Collection Rules (DCR)
-- Kusto Query Language (KQL)
-- Network Security Groups (NSG)
+- Data Collection Rules
+- Kusto Query Language 
+- Network Security Groups 
 - Threat Monitoring
-- GeoIP Log Enrichment
 - Security Event Visualization
 
-
-# Next Steps
-
-- Create custom Microsoft Sentinel analytics rules.
-- Configure automated incident creation.
-- Enable automated response using Microsoft Sentinel playbooks.
-- Add additional Azure virtual machines for multi-endpoint monitoring.
-- Simulate attacker activity using Kali Linux and investigate alerts in Sentinel.
